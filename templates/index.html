@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URL Shortener</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f0f8ff; /* Light Blue */
+            color: #004080; /* Dark Blue */
+        }
+        .container {
+            max-width: 600px;
+            margin-top: 100px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            font-weight: bold;
+        }
+        .btn-custom {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-custom:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <h1>🔗 URL Shortener</h1>
+        <p class="lead">Enter a long URL to generate a short link.</p>
+
+        <form action="/shorten" method="POST">
+            <div class="mb-3">
+                <input type="url" name="long_url" class="form-control" placeholder="Enter your long URL" required>
+            </div>
+            <button type="submit" class="btn btn-custom w-100">Shorten URL</button>
+        </form>
+
+        <div class="mt-4">
+            <p>Shortened URL will appear here:</p>
+            <h5><a id="shortened-link" href="#" class="text-primary"></a></h5>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector("form").addEventListener("submit", function(event) {
+            event.preventDefault();
+            // Simulating a shortened URL for demo purposes
+            const longUrl = document.querySelector("input[name='long_url']").value;
+            const shortUrl = "https://short.ly/" + btoa(longUrl).slice(0, 6);
+            document.getElementById("shortened-link").href = shortUrl;
+            document.getElementById("shortened-link").textContent = shortUrl;
+        });
+    </script>
+
+</body>
+</html>
